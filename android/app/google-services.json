@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "634120205740",
+    "project_id": "qpg-latest",
+    "storage_bucket": "qpg-latest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634120205740:android:a34ca63784e3a62978f609",
+        "android_client_info": {
+          "package_name": "com.qpg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdxtV-E24u5OV7bNXVMxbutnFERkNJdb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import { responsiveFontSize } from 'react-native-responsive-dimensions';
 import {BaseToast, ErrorToast} from 'react-native-toast-message';
 
 export const toastConfig = {
@@ -9,7 +10,7 @@ export const toastConfig = {
         paddingHorizontal: 15,
       }}
       text1Style={{
-        fontSize: 15,
+        fontSize: responsiveFontSize(1.8),
         fontWeight: '400',
       }}
     />
@@ -18,10 +19,10 @@ export const toastConfig = {
     <ErrorToast
       {...props}
       text1Style={{
-        fontSize: 17,
+        fontSize: responsiveFontSize(2),
       }}
       text2Style={{
-        fontSize: 15,
+        fontSize: responsiveFontSize(1.8),
       }}
     />
   ),
