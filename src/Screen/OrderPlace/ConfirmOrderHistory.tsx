@@ -207,6 +207,36 @@ const ConfirmOrderHistory = ({navigation}) => {
         leftIcon="menu"
         onLeftPress={() => navigation.toggleDrawer()}
       />
+            {/* Custom Tabs */}
+            <View style={styles.tabBar}>
+        <TouchableOpacity
+          style={[styles.tabButton, activeTab === 'ownOrders' && styles.activeTab]}
+          onPress={() => setActiveTab('ownOrders')}>
+             <Text style={styles.tabText}>Own Orders</Text>
+          {/* <Text
+            style={[
+              styles.tabText,
+              activeTab === 'ownOrders' && styles.activeTabText,
+            ]}>
+            
+          </Text> */}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.tabButton,
+            activeTab === 'assignedOrders' && styles.activeTab,
+          ]}
+          onPress={() => setActiveTab('assignedOrders')}>
+          {/* <Text
+            style={[
+              styles.tabText,
+              activeTab === 'assignedOrders' && styles.activeTabText,
+            ]}>
+            
+          </Text> */}
+          <Text style={styles.tabText}>Assigned Orders</Text>
+        </TouchableOpacity>
+      </View>
       <View
         style={{
           flexDirection: 'row',
@@ -215,15 +245,19 @@ const ConfirmOrderHistory = ({navigation}) => {
         }}>
         <TouchableOpacity
           style={{
-            marginHorizontal: 20,
+            marginHorizontal: 10,
             borderWidth: 1,
-            padding: 10,
-            borderRadius: 10,
+            borderColor:"blue",
+            paddingHorizontal: 20,
+            paddingVertical:10,
+            
+            borderRadius: 5,
+            backgroundColor: 'blue',
           }}
           onPress={() => {
             navigation.navigate('AddOrder');
           }}>
-          <Text style={{fontSize: responsiveFontSize(2), color: '#000'}}>
+          <Text style={{fontSize: responsiveFontSize(2), color: '#fff'}}>
             Add Order
           </Text>
         </TouchableOpacity>
@@ -234,37 +268,12 @@ const ConfirmOrderHistory = ({navigation}) => {
           <EvilIcons name="refresh" size={30} color={'#000'} />
         </TouchableOpacity>
       </View>
-      {/* Custom Tabs */}
-      <View style={styles.tabContainer}>
-        <TouchableOpacity
-          style={[styles.tab, activeTab === 'ownOrders' && styles.activeTab]}
-          onPress={() => setActiveTab('ownOrders')}>
-          <Text
-            style={[
-              styles.tabText,
-              activeTab === 'ownOrders' && styles.activeTabText,
-            ]}>
-            Own Orders
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.tab,
-            activeTab === 'assignedOrders' && styles.activeTab,
-          ]}
-          onPress={() => setActiveTab('assignedOrders')}>
-          <Text
-            style={[
-              styles.tabText,
-              activeTab === 'assignedOrders' && styles.activeTabText,
-            ]}>
-            Assigned Orders
-          </Text>
-        </TouchableOpacity>
-      </View>
+
+
+
 
       <FlatList
-        numColumns={activeTab === 'ownOrders' ? 2 : 1} // Dynamically set numColumns
+        numColumns={activeTab === 'ownOrders' ? 2 : 1} 
         refreshControl={
           <RefreshControl
             refreshing={isLoading}
@@ -273,9 +282,9 @@ const ConfirmOrderHistory = ({navigation}) => {
         }
         data={filterOrdersByType()}
         renderItem={({item}) => <OrderItem item={item} />}
-        keyExtractor={item => item.id.toString()} // Keep a stable key for items
-        key={activeTab === 'ownOrders' ? 'own' : 'assigned'} // Avoid dynamic keys for the entire list
-        extraData={expandedUserId} // Pass expanded state to avoid unnecessary re-renders
+        keyExtractor={item => item.id.toString()} 
+        key={activeTab === 'ownOrders' ? 'own' : 'assigned'}
+        extraData={expandedUserId}
       />
     </View>
   );
@@ -287,6 +296,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+
+  tabBar: {
+    flexDirection: 'row',
+   
+    backgroundColor: '#0056b3',
+  },
+  tabButton: {
+    flex: 1,
+    padding: 16,
+    alignItems: 'center',
   },
   tabContainer: {
     flexDirection: 'row',
@@ -301,14 +321,14 @@ const styles = StyleSheet.create({
     borderBottomColor: 'transparent',
   },
   activeTab: {
-    borderBottomColor: 'blue',
+    backgroundColor: '#007BFF',
   },
   tabText: {
     fontSize: responsiveFontSize(2),
-    color: '#000',
+    color: '#fff',
   },
   activeTabText: {
-    color: 'blue',
+    backgroundColor: '#0056b3',
     fontWeight: 'bold',
   },
   cardContainer: {
@@ -370,9 +390,6 @@ const styles = StyleSheet.create({
   fullWidthCard: {
     // width: '100%',
     borderRadius: 10,
-    padding: 16,
-    marginVertical: 8,
-    backgroundColor: '#f8f9fa',
-    elevation: 2,
+
   },
 });
